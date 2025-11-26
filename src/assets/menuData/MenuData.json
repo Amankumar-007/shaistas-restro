@@ -1,0 +1,126 @@
+{
+  "categories": [
+    {
+      "id": "veg",
+      "label": "Veg",
+      "icon": "utensils",
+      "description": "Enjoy a variety of vegetarian specialties, carefully crafted with the freshest ingredients to create a truly unique dining experience."
+    },
+    {
+      "id": "non-veg",
+      "label": "Non-Veg",
+      "icon": "store",
+      "description": "Savor our rich and aromatic non-vegetarian delicacies, slow-cooked to perfection with authentic spices."
+    },
+    {
+      "id": "desserts",
+      "label": "Desserts",
+      "icon": "ice-cream",
+      "description": "Sweeten your palate with our delightful range of handcrafted traditional and modern desserts."
+    },
+    {
+      "id": "winter",
+      "label": "Winter Specials",
+      "icon": "snowflake",
+      "description": "Warm up with our seasonal winter specials, featuring hearty ingredients and comforting flavors."
+    }
+  ],
+  "items": [
+    {
+      "id": 1,
+      "categoryId": "veg",
+      "name": "Shaista's Special Navratan Korma",
+      "description": "Our special tantalizing vegetarian delight features a medley of 9 veggies and fruits served in aromatic creamy gravy.",
+      "serves": 4,
+      "image": "https://images.unsplash.com/photo-1626074353765-517a681e40be?auto=format&fit=crop&q=80&w=800",
+      "options": [
+        { "label": "750 ML", "color": "yellow" },
+        { "label": "1500 ML", "color": "dark" }
+      ]
+    },
+    {
+      "id": 2,
+      "categoryId": "veg",
+      "name": "Paneer Pasanda",
+      "description": "Nutty-filled succulent pieces of paneer served with a saucy, creamy tomato gravy garnished with nuts.",
+      "serves": 4,
+      "image": "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&q=80&w=800",
+      "options": [
+        { "label": "750 ML", "color": "yellow" },
+        { "label": "1500 ML", "color": "dark" }
+      ]
+    },
+    {
+      "id": 3,
+      "categoryId": "veg",
+      "name": "Dum-Ka-Paneer",
+      "description": "Savor the slow-cooked, spice-infused, creamy and buttery Dum-Ka-Paneer for an unforgettable taste.",
+      "serves": 4,
+      "image": "https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&q=80&w=800",
+      "options": [
+        { "label": "750 ML", "color": "yellow" },
+        { "label": "1500 ML", "color": "dark" }
+      ]
+    },
+    {
+      "id": 4,
+      "categoryId": "veg",
+      "name": "Sabz Makhni Miloni",
+      "description": "Wholesome and creamy veggie dish with aromatic spices, Butter, Spinach based gravy and a touch of cream.",
+      "serves": 4,
+      "image": "https://images.unsplash.com/photo-1596797038530-2c107229654b?auto=format&fit=crop&q=80&w=800",
+      "options": [
+        { "label": "750 ML", "color": "yellow" },
+        { "label": "1500 ML", "color": "dark" }
+      ]
+    },
+    {
+      "id": 5,
+      "categoryId": "non-veg",
+      "name": "Butter Chicken",
+      "description": "Classic roasted chicken cooked in a rich, creamy tomato gravy with butter and aromatic fenugreek.",
+      "serves": 4,
+      "image": "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&q=80&w=800",
+      "options": [
+        { "label": "750 ML", "color": "yellow" },
+        { "label": "1500 ML", "color": "dark" }
+      ]
+    },
+    {
+      "id": 6,
+      "categoryId": "non-veg",
+      "name": "Mutton Rogan Josh",
+      "description": "Aromatic Kashmiri style lamb curry with vibrant red gravy and traditional spices.",
+      "serves": 3,
+      "image": "https://images.unsplash.com/photo-1585937421612-70a008356f36?auto=format&fit=crop&q=80&w=800",
+      "options": [
+        { "label": "750 ML", "color": "yellow" },
+        { "label": "1500 ML", "color": "dark" }
+      ]
+    },
+    {
+      "id": 7,
+      "categoryId": "non-veg",
+      "name": "Chicken Biryani",
+      "description": "Fragrant basmati rice layered with spiced chicken, saffron, and fried onions.",
+      "serves": 5,
+      "image": "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&q=80&w=800",
+      "options": [
+        { "label": "1 KG", "color": "yellow" },
+        { "label": "2 KG", "color": "dark" }
+      ]
+    },
+    {
+      "id": 8,
+      "categoryId": "non-veg",
+      "name": "Fish Curry",
+      "description": "Tender fish fillets simmered in a tangy and spicy coconut-based curry.",
+      "serves": 4,
+      "image": "https://images.unsplash.com/photo-1626509689843-157929426f8d?auto=format&fit=crop&q=80&w=800",
+      "options": [
+        { "label": "750 ML", "color": "yellow" },
+        { "label": "1500 ML", "color": "dark" }
+      ]
+    }
+  ]
+}
