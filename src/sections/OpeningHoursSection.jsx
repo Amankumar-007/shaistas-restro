@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Phone, MessageCircle, ChevronUp } from 'lucide-react';
 import HeroImage from '../assets/Hero.webp';
 
 const OpeningHoursSection = () => {
+  const [showFloatingButtons, setShowFloatingButtons] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
+
   // Handler for Scroll to Top
   const scrollToTop = () => {
     window.scrollTo({
@@ -10,6 +13,27 @@ const OpeningHoursSection = () => {
       behavior: 'smooth'
     });
   };
+
+  // Handle scroll to show/hide floating buttons
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      setScrollY(currentScrollY);
+      
+      // Hide buttons when at the top (hero section), show when scrolled
+      const heroSectionHeight = window.innerHeight;
+      setShowFloatingButtons(currentScrollY > heroSectionHeight * 0.5);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    // Initial check
+    handleScroll();
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
     <div className="w-full font-serif">
@@ -57,7 +81,7 @@ const OpeningHoursSection = () => {
       </div>
 
       {/* 3. Floating Action Buttons (Bottom Right) */}
-      <div className="fixed bottom-8 right-8 flex gap-3 z-50">
+      <div className={`fixed bottom-8 right-8 flex gap-3 z-50 transition-all duration-300 ${showFloatingButtons ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-20 pointer-events-none'}`}>
         
         {/* Phone Button */}
         <a 
