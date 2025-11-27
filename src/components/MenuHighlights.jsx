@@ -36,25 +36,25 @@ const MenuHighlights = () => {
   const fontStyle = { fontFamily: '"Caveat", cursive' };
 
   return (
-    <section className="w-full bg-[#EAF4EE] py-16 md:py-24 px-4">
-      <div className="max-w-7xl mx-auto">
+    <section className="w-full bg-[#EAF4EE] py-8 sm:py-12 lg:py-20 px-3 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto">
         {/* Header Section */}
-        <div className="text-center mb-16 max-w-4xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6" style={fontStyle}>
+        <div className="text-center mb-8 sm:mb-12 max-w-2xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl lg:text-5xl font-bold text-gray-900 mb-3 sm:mb-5 leading-tight" style={fontStyle}>
             Our Special Delicacies
           </h2>
-          <div className="w-24 h-1 bg-amber-500 mx-auto mb-8"></div>
-          <p className="text-lg text-gray-600">
+          <div className="w-16 sm:w-24 h-1 bg-amber-500 mx-auto mb-6 sm:mb-8"></div>
+          <p className="text-sm sm:text-base lg:text-lg text-gray-600 leading-relaxed px-2">
             Experience the rich flavors and culinary excellence of our signature dishes, each prepared with the finest ingredients and authentic recipes.
           </p>
         </div>
 
         {/* Menu Items Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 auto-rows-fr">
           {menuItems.map((item, index) => (
             <motion.div
               key={item.id}
-              className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 h-96"
+              className="group relative overflow-hidden rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 min-h-[300px] sm:min-h-[380px] lg:min-h-[420px]"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -80,10 +80,10 @@ const MenuHighlights = () => {
               </div>
 
               {/* Content */}
-              <div className="relative h-full flex flex-col justify-between p-8 text-white bg-gradient-to-t from-black/70 via-transparent to-transparent">
+              <div className="relative h-full flex flex-col justify-between p-4 sm:p-6 lg:p-8 text-white bg-gradient-to-t from-black/85 via-black/20 to-transparent">
                 {/* Type Badge */}
                 <div className="self-start">
-                  <span className={`px-4 py-1.5 rounded-full text-sm font-semibold ${
+                  <span className={`px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm font-semibold tracking-wide uppercase ${
                     item.type === 'Veg' ? 'bg-green-600' : 'bg-red-600'
                   }`}>
                     {item.type}
@@ -91,34 +91,28 @@ const MenuHighlights = () => {
                 </div>
 
                 {/* Dish Info */}
-                <div className="mt-auto transform transition-transform duration-500 group-hover:-translate-y-2">
-                  <h3 className="text-2xl md:text-3xl font-bold mb-2">{item.name}</h3>
-                  <p className="text-white/90 mb-4">{item.description}</p>
-                  <div className="opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
-                    <p className="text-sm text-white/80 mb-4">{item.typeDescription}</p>
-                    <Button 
-                      variant="primary"
-                      onClick={() => {}}
-                    >
-                      View Details
-                    </Button>
+                <div className="mt-auto space-y-2 sm:space-y-3 transform transition-transform duration-500 group-hover:-translate-y-1 sm:group-hover:-translate-y-2">
+                  <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-1">{item.name}</h3>
+                  <p className="text-white/90 text-xs sm:text-sm lg:text-base leading-relaxed">{item.description}</p>
+                  <div className="space-y-3">
+                    <p className="text-sm text-white/80 leading-relaxed">{item.typeDescription}</p>
                   </div>
                 </div>
               </div>
 
               {/* Decorative Elements */}
-              <div className="absolute top-4 right-4 w-16 h-16 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center">
-                <span className="text-2xl">{item.id.toString().padStart(2, '0')}</span>
+              <div className="absolute top-3 sm:top-4 right-3 sm:right-4 w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center">
+                <span className="text-base sm:text-lg lg:text-2xl font-semibold">{item.id.toString().padStart(2, '0')}</span>
               </div>
             </motion.div>
           ))}
         </div>
 
         {/* CTA Button */}
-        <div className="text-center mt-16">
+        <div className="text-center mt-8 sm:mt-12 lg:mt-16">
           <Button 
             variant="primary"
-            className="shadow-lg hover:shadow-gray-400/30"
+            className="shadow-lg hover:shadow-gray-400/30 text-sm sm:text-base px-6 py-2.5 sm:px-8 sm:py-3"
             onClick={() => {}}
           >
             View Full Menu

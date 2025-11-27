@@ -1,109 +1,127 @@
 import React, { useState, useEffect } from 'react';
-import { ShoppingCart, Phone, MessageCircle, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Phone, MessageCircle, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { branding } from '../constants/branding';
 
 // --- Assets & Data ---
-
-// Since we don't have the individual assets (transparent food images), we will use the uploaded image 
-// as the main background for the 'Exact' slide, but I will construct a layout that mimicks it 
-// so you can swap in real transparent PNGs later if you have them.
 const slides = [
   {
     id: 1,
-    type: 'image-based',
-    bgImage: "https://i.postimg.cc/HxNYZ1jg/image-75ddb9.jpg", // Using a placeholder that represents the user's uploaded image concept
-    // Note: In a real production app, you would slice the "Mommylicious Mealbox" logo and food bowls as separate PNGs.
-    // For this replica, I will overlay the interactive button on top of the visual.
-    buttonText: "TAKE A GLANCE AT MOMMYLICIOUS MEALBOX",
-    hasFloatingMenu: true
+    type: 'special',
+    bgImage: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=2000",
+    title: "Mommylicious",
+    highlight: "MEALBOX",
+    subtext: "by Shaista's",
+    buttonText: "VIEW MEALBOX",
+    path: "/mealbox"
   },
   {
     id: 2,
-    type: 'content-based',
+    type: 'standard',
     title: "Zaika-E-Khaas",
-    subtitle: "Authentic Flavors Delivered",
+    subtitle: "Authentic Flavors",
     description: "Experience the royal taste of our special curries and biryanis.",
     buttonText: "ORDER NOW",
+    path: "/order",
     image: "https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&q=80&w=1000"
   },
   {
     id: 3,
-    type: 'content-based',
+    type: 'standard',
     title: "Catering Services",
-    subtitle: "Make Your Events Memorable",
+    subtitle: "Make Events Memorable",
     description: "From birthday bashes to weddings, we serve love in every plate.",
     buttonText: "GET A QUOTE",
+    path: "/catering",
     image: "https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&q=80&w=1000"
   }
 ];
 
-
 const HeroSlide = ({ slide, isActive }) => {
   const navigate = useNavigate();
-  if (slide.type === 'image-based') {
-    // This replicates the exact uploaded image look
+
+  // Animation classes
+  const animTitle = isActive ? "animate-fade-in-up delay-100" : "opacity-0";
+  const animSub = isActive ? "animate-fade-in-up delay-200" : "opacity-0";
+  const animBtn = isActive ? "animate-fade-in-up delay-300" : "opacity-0";
+
+  // --- SLIDE TYPE 1: The "Special" Branding Slide ---
+  if (slide.type === 'special') {
     return (
-      <div className="relative w-full h-full bg-white flex items-center justify-center overflow-hidden">
+      <div className="relative w-full h-full bg-[#FFFBF2] overflow-hidden flex flex-col md:flex-row">
+        
+        {/* Mobile: Full Background | Desktop: Split Right */}
+        <div className="absolute inset-0 md:relative md:w-3/5 h-full order-1 md:order-2">
+          {/* Mobile Overlay Gradient (Crucial for text readability) */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent md:hidden z-10" />
+          {/* Desktop Overlay Gradient */}
+          <div className="hidden md:block absolute inset-0 bg-gradient-to-r from-[#FFFBF2] via-transparent to-transparent z-10" />
+          
+          <img
+            src={slide.bgImage}
+            alt="Mommylicious Feast"
+            className="w-full h-full object-cover object-center md:object-left animate-ken-burns"
+          />
+        </div>
 
-        <div className="absolute inset-0 bg-white">
+        {/* Content Section */}
+        <div className="absolute inset-0 md:relative md:inset-auto md:w-2/5 h-full z-20 flex flex-col justify-end md:justify-center items-start pb-24 px-6 md:pl-20 md:pb-0 text-left order-2 md:order-1">
+          
+          <div className={`transform transition-all duration-700 ${isActive ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+            <h2 className="text-5xl md:text-7xl font-bold text-white md:text-[#4A2C2A] font-cursive leading-tight drop-shadow-md md:drop-shadow-none">
+              {slide.title}
+            </h2>
+            <h3 className="text-4xl md:text-6xl font-extrabold text-[#F4B42F] md:text-[#E85D04] tracking-wide mt-[-5px] md:mt-[-10px] drop-shadow-sm">
+              {slide.highlight}
+            </h3>
+            <p className="text-xl text-gray-200 md:text-[#4A2C2A] font-serif mt-2 italic flex items-center gap-2">
+              {slide.subtext}
+              <span className="hidden md:inline-block w-8 h-[2px] bg-[#F4B42F]"></span>
+            </p>
 
-          <div className="absolute top-0 left-0 w-full h-full opacity-100">
-            <img
-              src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=2000"
-              alt="Mommylicious Feast"
-              className="w-full h-full object-cover md:object-contain object-left"
-              style={{ maskImage: 'linear-gradient(to right, black 40%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to right, black 40%, transparent 100%)' }}
-            />
-          </div>
-
-          <div className="absolute inset-0 flex flex-col items-end justify-center pr-8 md:pr-24 pb-12 md:pb-0 pointer-events-none mt-16 md:mt-0">
-
-            <div className="text-right mb-6 transform rotate-[-2deg]">
-              <h2 className="text-6xl md:text-7xl font-bold text-[#4A2C2A] font-cursive leading-none drop-shadow-md">
-                Mommylicious
-              </h2>
-              <h3 className="text-4xl md:text-5xl font-extrabold text-[#E85D04] tracking-wider mt-[-10px]">
-                MEALBOX
-              </h3>
-              <p className="text-xl text-[#4A2C2A] font-script mt-2 mr-4">
-                by <span className="bg-[#3E1F18] text-[#F4B42F] px-3 py-1 rounded-full text-lg ml-2 font-serif border-2 border-[#F4B42F]">Shaista's</span>
-              </p>
-            </div>
-
-            <button className="pointer-events-auto bg-[#F4B42F] bg-opacity-90 hover:bg-[#EAA622] text-[#3E1F18] border-2 border-[#3E1F18] px-6 py-3 rounded-lg font-bold uppercase tracking-wider shadow-lg transform hover:scale-105 transition-all text-sm md:text-base">
+            <button 
+              onClick={() => navigate(slide.path)}
+              className="mt-6 bg-[#F4B42F] text-[#3E1F18] border-2 border-[#3E1F18] md:border-[#3E1F18] px-8 py-3 rounded-xl font-bold uppercase tracking-wider shadow-lg md:shadow-[4px_4px_0px_0px_rgba(62,31,24,1)] hover:scale-105 transition-all"
+            >
               {slide.buttonText}
             </button>
           </div>
-        </div>
-
-        <div className="absolute bottom-32 right-[20%] md:right-[15%] pointer-events-auto animate-bounce-slow hidden md:flex">
-          <button
-            onClick={() => navigate('/menu')}
-            className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-[#3E1F18] text-[#F4B42F] flex items-center justify-center font-cursive text-xl md:text-2xl border-4 border-white shadow-xl hover:rotate-12 transition-transform cursor-pointer"
-          >
-            Menu
-          </button>
         </div>
       </div>
     );
   }
 
-  // Generic Layout for other slides
+  // --- SLIDE TYPE 2: Standard Content Slide ---
   return (
-    <div className={`w-full h-full flex flex-col md:flex-row items-center ${slide.bgColor}`}>
-      <div className="w-full md:w-1/2 h-1/2 md:h-full relative order-2 md:order-1">
-        <img src={slide.image} alt={slide.title} className="w-full h-full object-cover" />
+    <div className="w-full h-full relative flex md:flex-row bg-[#3E1F18]">
+      
+      {/* Background Image Wrapper (Full on Mobile, Half on Desktop) */}
+      <div className="absolute inset-0 md:relative md:w-1/2 h-full overflow-hidden">
+        {/* Dark overlay for Mobile Text Readability */}
+        <div className="absolute inset-0 bg-black/60 md:bg-black/20 z-10" />
+        <img 
+          src={slide.image} 
+          alt={slide.title} 
+          className="w-full h-full object-cover animate-ken-burns" 
+        />
       </div>
-      <div className="w-full md:w-1/2 h-1/2 md:h-full flex flex-col justify-center p-8 md:p-16 order-1 md:order-2 text-center md:text-left">
-        <h2 className="text-4xl md:text-6xl font-bold text-[#3E1F18] mb-4 font-cursive">{slide.title}</h2>
-        <h3 className="text-xl md:text-2xl text-[#E85D04] font-semibold mb-6">{slide.subtitle}</h3>
-        <p className="text-gray-600 mb-8 max-w-md mx-auto md:mx-0 leading-relaxed">{slide.description}</p>
-        <div>
-          <button className="bg-[#3E1F18] text-white px-8 py-3 rounded-full font-bold hover:bg-[#E85D04] transition-colors shadow-lg">
-            {slide.buttonText}
-          </button>
-        </div>
+
+      {/* Text Content */}
+      <div className="relative z-20 w-full h-full md:w-1/2 flex flex-col justify-end md:justify-center items-start p-8 pb-24 md:p-16 md:pb-0 text-left text-white">
+        <h2 className={`text-4xl md:text-5xl font-bold font-cursive text-[#F4B42F] mb-2 drop-shadow-md ${animTitle}`}>
+          {slide.title}
+        </h2>
+        <h3 className={`text-2xl md:text-3xl font-semibold mb-3 text-gray-100 drop-shadow-sm ${animSub}`}>
+          {slide.subtitle}
+        </h3>
+        <p className={`text-gray-200 md:text-gray-300 text-base md:text-lg mb-8 max-w-sm leading-relaxed drop-shadow-sm ${animSub}`}>
+          {slide.description}
+        </p>
+        <button 
+          onClick={() => navigate(slide.path)}
+          className={`bg-[#F4B42F] text-[#3E1F18] px-8 py-3 rounded-full font-bold hover:bg-white transition-colors shadow-lg ${animBtn}`}
+        >
+          {slide.buttonText}
+        </button>
       </div>
     </div>
   );
@@ -111,53 +129,98 @@ const HeroSlide = ({ slide, isActive }) => {
 
 const HeroSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  
+  // Touch Handling State
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
 
   useEffect(() => {
+    if (isPaused) return;
     const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
+      nextSlide();
     }, 5000);
     return () => clearInterval(timer);
-  }, []);
+  }, [currentSlide, isPaused]);
 
   const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
 
+  // Swipe Logic
+  const minSwipeDistance = 50;
+  const onTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+    setIsPaused(true);
+  };
+  const onTouchMove = (e) => setTouchEnd(e.targetTouches[0].clientX);
+  const onTouchEnd = () => {
+    setIsPaused(false);
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    if (distance > minSwipeDistance) nextSlide();
+    if (distance < -minSwipeDistance) prevSlide();
+  };
+
   return (
-    <section id="hero" className="relative w-full h-[500px] md:h-[600px] lg:h-[700px] bg-white overflow-hidden group">
-      {/* Slides Container */}
-      <div
-        className="w-full h-full transition-transform duration-700 ease-in-out flex"
-        style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-      >
+    <section 
+      id="hero" 
+      className="relative w-full h-[100dvh] md:h-[650px] lg:h-[700px] bg-white overflow-hidden group select-none" // Changed height to 100dvh for mobile immersion
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEnd}
+    >
+      <style>{`
+        @keyframes fade-in-up {
+          0% { opacity: 0; transform: translateY(20px); }
+          100% { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes ken-burns {
+          0% { transform: scale(1); }
+          100% { transform: scale(1.1); }
+        }
+        .animate-fade-in-up { animation: fade-in-up 0.8s ease-out forwards; }
+        .animate-ken-burns { animation: ken-burns 10s ease-out infinite alternate; }
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+      `}</style>
+
+      {/* Slides */}
+      <div className="w-full h-full relative">
         {slides.map((slide, index) => (
-          <div key={slide.id} className="w-full h-full flex-shrink-0 relative">
+          <div 
+            key={slide.id} 
+            className={`absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out ${index === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+          >
             <HeroSlide slide={slide} isActive={index === currentSlide} />
           </div>
         ))}
       </div>
 
-      {/* Navigation Arrows */}
-      <button
-        onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/50 hover:bg-white text-[#3E1F18] p-2 rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity"
-      >
-        <ChevronLeft size={32} />
-      </button>
-      <button
-        onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/50 hover:bg-white text-[#3E1F18] p-2 rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity"
-      >
-        <ChevronRight size={32} />
-      </button>
+      {/* Desktop Arrows */}
+      <div className="hidden md:block">
+        <button onClick={prevSlide} className="absolute left-6 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-[#3E1F18] backdrop-blur-sm text-[#3E1F18] hover:text-[#F4B42F] p-3 rounded-full transition-all z-40">
+          <ChevronLeft size={32} />
+        </button>
+        <button onClick={nextSlide} className="absolute right-6 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-[#3E1F18] backdrop-blur-sm text-[#3E1F18] hover:text-[#F4B42F] p-3 rounded-full transition-all z-40">
+          <ChevronRight size={32} />
+        </button>
+      </div>
 
-      {/* Pagination Dots */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
+      {/* Pagination Dots - Positioned higher on mobile to clear safe area */}
+      <div className="absolute bottom-8 md:bottom-6 left-6 md:left-1/2 md:-translate-x-1/2 flex gap-2 z-40">
         {slides.map((_, idx) => (
           <button
             key={idx}
             onClick={() => setCurrentSlide(idx)}
-            className={`w-3 h-3 rounded-full transition-all ${currentSlide === idx ? 'bg-[#3E1F18] w-6' : 'bg-[#3E1F18]/30 hover:bg-[#3E1F18]/50'
-              }`}
+            className={`transition-all duration-300 rounded-full shadow-sm ${
+              currentSlide === idx 
+                ? 'bg-[#F4B42F] w-8 h-2 md:w-8 md:h-3' 
+                : 'bg-white/50 hover:bg-white/80 w-2 h-2 md:w-3 md:h-3'
+            }`}
           />
         ))}
       </div>
@@ -168,15 +231,12 @@ const HeroSlider = () => {
 export const FloatingActions = () => {
   return (
     <div className="fixed bottom-6 right-6 flex flex-col gap-3 z-50">
-      <a href="#" className="w-12 h-12 bg-[#3E1F18] rounded-full flex items-center justify-center text-white shadow-lg hover:scale-110 transition-transform">
+      <a href="tel:+1234567890" className="w-12 h-12 bg-[#3E1F18] rounded-full flex items-center justify-center text-white shadow-lg hover:scale-110 transition-transform hover:bg-[#E85D04]">
         <Phone size={20} />
       </a>
-      <a href="#" className="w-12 h-12 bg-[#25D366] rounded-full flex items-center justify-center text-white shadow-lg hover:scale-110 transition-transform">
+      <a href="https://wa.me/1234567890" className="w-12 h-12 bg-[#25D366] rounded-full flex items-center justify-center text-white shadow-lg hover:scale-110 transition-transform">
         <MessageCircle size={24} />
       </a>
-      <div className="w-12 h-8 flex items-center justify-center">
-        <div className="w-0 h-0 border-l-[10px] border-l-transparent border-t-[15px] border-t-[#F4B42F] border-r-[10px] border-r-transparent animate-bounce"></div>
-      </div>
     </div>
   );
 };
