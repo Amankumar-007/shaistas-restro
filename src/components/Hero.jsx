@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ShoppingCart, Phone, MessageCircle, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { branding } from '../constants/branding';
 
 // --- Assets & Data ---
@@ -41,21 +42,15 @@ const slides = [
 
 
 const HeroSlide = ({ slide, isActive }) => {
+  const navigate = useNavigate();
   if (slide.type === 'image-based') {
     // This replicates the exact uploaded image look
     return (
       <div className="relative w-full h-full bg-white flex items-center justify-center overflow-hidden">
-        {/* Background Image Container - In a real app, use the actual image as an <img> or background */}
-        {/* Since I cannot display the local file directly in this code block without a host, 
-            I'm simulating the layout with CSS to look exactly like the screenshot provided. */}
-        
-        {/* Simulation of the Uploaded Image Layout */}
+      
         <div className="absolute inset-0 bg-white">
-          {/* We use the pattern from the image: Food left, White space, Logo right */}
            
-          {/* Decorative Background Elements (Food Bowls) */}
            <div className="absolute top-0 left-0 w-full h-full opacity-100">
-             {/* Note: In production, put the actual full banner image here: */}
               <img 
                 src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=2000" 
                 alt="Mommylicious Feast" 
@@ -64,10 +59,8 @@ const HeroSlide = ({ slide, isActive }) => {
               />
            </div>
 
-           {/* Central/Right Content Overlay */}
            <div className="absolute inset-0 flex flex-col items-end justify-center pr-8 md:pr-24 pb-12 pointer-events-none">
               
-              {/* Logo Replication */}
               <div className="text-right mb-6 transform rotate-[-2deg]">
                 <h2 className="text-6xl md:text-7xl font-bold text-[#4A2C2A] font-cursive leading-none drop-shadow-md">
                   Mommylicious
@@ -80,16 +73,17 @@ const HeroSlide = ({ slide, isActive }) => {
                 </p>
               </div>
 
-              {/* The CTA Button from the image */}
               <button className="pointer-events-auto bg-[#F4B42F] bg-opacity-90 hover:bg-[#EAA622] text-[#3E1F18] border-2 border-[#3E1F18] px-6 py-3 rounded-lg font-bold uppercase tracking-wider shadow-lg transform hover:scale-105 transition-all text-sm md:text-base">
                 {slide.buttonText}
               </button>
            </div>
         </div>
 
-        {/* Floating "Menu" Circle from Image */}
         <div className="absolute bottom-32 right-[20%] md:right-[15%] pointer-events-auto animate-bounce-slow hidden md:flex">
-          <button className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-[#3E1F18] text-[#F4B42F] flex items-center justify-center font-cursive text-xl md:text-2xl border-4 border-white shadow-xl hover:rotate-12 transition-transform">
+          <button 
+            onClick={() => navigate('/menu')}
+            className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-[#3E1F18] text-[#F4B42F] flex items-center justify-center font-cursive text-xl md:text-2xl border-4 border-white shadow-xl hover:rotate-12 transition-transform cursor-pointer"
+          >
             Menu
           </button>
         </div>

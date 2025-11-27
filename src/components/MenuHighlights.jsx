@@ -88,8 +88,8 @@ const MenuHighlights = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: item.id * 0.2 }}
             >
-              {/* Circle Container with Border */}
-              <div className={`relative w-64 h-72 md:w-80 md:h-80 lg:w-88 lg:h-88 rounded-full overflow-hidden border-[6px] ${item.borderColor} shadow-2xl bg-gray-100`}>
+              {/* Circle Container with Border - Now perfect circle on all screens */}
+              <div className={`relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-88 lg:h-88 rounded-full overflow-hidden border-[6px] ${item.borderColor} shadow-2xl bg-gray-100`}>
                 
                 {/* Image */}
                 <img

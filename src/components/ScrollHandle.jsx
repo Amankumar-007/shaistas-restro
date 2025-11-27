@@ -4,7 +4,7 @@ import VideoSource from '../assets/Zaika-E-Khaas.webm';
 
 const ScrollHandle = () => {
   return (
-    <div className="w-full flex justify-center items-center">
+    <div className="w-full flex justify-center items-center mb-4">
       <div className="relative w-full max-w-4xl rounded-lg overflow-hidden">
         <video 
           autoPlay 

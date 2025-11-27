@@ -14,7 +14,7 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <nav className="w-full h-12 bg-[#F4B42F] text-[#4A2C2A] sticky top-0 z-50 shadow-md font-serif relative">
+    <nav className="w-full h-12 bg-[#F4B42F] text-[#4A2C2A] sticky top-0 z-50 shadow-md font-serif">
       <div className="container mx-auto px-4  flex items-center justify-between">
         
         {/* Left: Logo Area */}

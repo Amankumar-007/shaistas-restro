@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import menuPdf from '../assets/1911-restaurant-menu.pdf';
-import { Utensils, ChevronRight } from 'lucide-react';
+import menuPdf from '../assets/menu.pdf';
+import { Utensils, ChevronRight, X } from 'lucide-react';
 
 // Add the font to the document head
 const style = document.createElement('style');
@@ -15,16 +15,23 @@ document.head.appendChild(style);
 const MenuButton = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [isPulsing, setIsPulsing] = useState(true);
+  const [isVisible, setIsVisible] = useState(true);
   
   // Disable pulsing effect for a cleaner look
   useEffect(() => {
     setIsPulsing(false);
   }, []);
 
+  const handleClose = () => {
+    setIsVisible(false);
+  };
+
   const openPdf = (e) => {
     e.preventDefault();
     window.open(menuPdf, '_blank', 'noopener,noreferrer');
   };
+
+  if (!isVisible) return null;
 
   return (
     <div className="fixed right-18 bottom-30 z-50">
@@ -33,6 +40,15 @@ const MenuButton = () => {
         <div className={`absolute inset-0 rounded-full bg-[#FFD700] opacity-0 transition-opacity duration-300 ${
           isHovered ? 'opacity-10' : ''
         }`}></div>
+        
+        {/* Close button */}
+        <button
+          onClick={handleClose}
+          className="absolute -top-2 -right-2 w-6 h-6 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-100 transition-colors z-10"
+          aria-label="Close menu button"
+        >
+          <X size={14} className="text-gray-700" />
+        </button>
         
         <button
           onClick={openPdf}

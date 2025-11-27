@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { UtensilsCrossed, Store, IceCream, Snowflake, Loader2 } from 'lucide-react';
 import menuData from '../assets/menuData/MenuData.json';
+import ScrollHandle from '../components/ScrollHandle';
+import PDFViewer from '../components/PDFViewer';
 
 // Component for rendering specific icons based on string name
 const CategoryIcon = ({ name, isActive }) => {
@@ -43,10 +45,10 @@ export default function Menu() {
 
   return (
     <div className="min-h-screen bg-white font-sans pb-12">
+      <ScrollHandle/>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
         {/* Header */}
-        <div className="text-center pt-12 pb-8">
+        <div className="text-center pb-8">
           <h1 className="text-4xl font-bold text-gray-800 font-serif">Our Menu</h1>
         </div>
 
