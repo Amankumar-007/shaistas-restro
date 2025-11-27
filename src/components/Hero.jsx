@@ -21,17 +21,15 @@ const slides = [
   {
     id: 2,
     type: 'content-based',
-    bgColor: "bg-orange-50",
     title: "Zaika-E-Khaas",
     subtitle: "Authentic Flavors Delivered",
     description: "Experience the royal taste of our special curries and biryanis.",
     buttonText: "ORDER NOW",
-    image: "https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&q=80&w=1000" 
+    image: "https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&q=80&w=1000"
   },
   {
     id: 3,
     type: 'content-based',
-    bgColor: "bg-red-50",
     title: "Catering Services",
     subtitle: "Make Your Events Memorable",
     description: "From birthday bashes to weddings, we serve love in every plate.",
@@ -47,40 +45,40 @@ const HeroSlide = ({ slide, isActive }) => {
     // This replicates the exact uploaded image look
     return (
       <div className="relative w-full h-full bg-white flex items-center justify-center overflow-hidden">
-      
+
         <div className="absolute inset-0 bg-white">
-           
-           <div className="absolute top-0 left-0 w-full h-full opacity-100">
-              <img 
-                src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=2000" 
-                alt="Mommylicious Feast" 
-                className="w-full h-full object-cover md:object-contain object-left"
-                style={{ maskImage: 'linear-gradient(to right, black 40%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to right, black 40%, transparent 100%)' }}
-              />
-           </div>
 
-           <div className="absolute inset-0 flex flex-col items-end justify-center pr-8 md:pr-24 pb-12 pointer-events-none">
-              
-              <div className="text-right mb-6 transform rotate-[-2deg]">
-                <h2 className="text-6xl md:text-7xl font-bold text-[#4A2C2A] font-cursive leading-none drop-shadow-md">
-                  Mommylicious
-                </h2>
-                <h3 className="text-4xl md:text-5xl font-extrabold text-[#E85D04] tracking-wider mt-[-10px]">
-                  MEALBOX
-                </h3>
-                <p className="text-xl text-[#4A2C2A] font-script mt-2 mr-4">
-                  by <span className="bg-[#3E1F18] text-[#F4B42F] px-3 py-1 rounded-full text-lg ml-2 font-serif border-2 border-[#F4B42F]">Shaista's</span>
-                </p>
-              </div>
+          <div className="absolute top-0 left-0 w-full h-full opacity-100">
+            <img
+              src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=2000"
+              alt="Mommylicious Feast"
+              className="w-full h-full object-cover md:object-contain object-left"
+              style={{ maskImage: 'linear-gradient(to right, black 40%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to right, black 40%, transparent 100%)' }}
+            />
+          </div>
 
-              <button className="pointer-events-auto bg-[#F4B42F] bg-opacity-90 hover:bg-[#EAA622] text-[#3E1F18] border-2 border-[#3E1F18] px-6 py-3 rounded-lg font-bold uppercase tracking-wider shadow-lg transform hover:scale-105 transition-all text-sm md:text-base">
-                {slide.buttonText}
-              </button>
-           </div>
+          <div className="absolute inset-0 flex flex-col items-end justify-center pr-8 md:pr-24 pb-12 md:pb-0 pointer-events-none mt-16 md:mt-0">
+
+            <div className="text-right mb-6 transform rotate-[-2deg]">
+              <h2 className="text-6xl md:text-7xl font-bold text-[#4A2C2A] font-cursive leading-none drop-shadow-md">
+                Mommylicious
+              </h2>
+              <h3 className="text-4xl md:text-5xl font-extrabold text-[#E85D04] tracking-wider mt-[-10px]">
+                MEALBOX
+              </h3>
+              <p className="text-xl text-[#4A2C2A] font-script mt-2 mr-4">
+                by <span className="bg-[#3E1F18] text-[#F4B42F] px-3 py-1 rounded-full text-lg ml-2 font-serif border-2 border-[#F4B42F]">Shaista's</span>
+              </p>
+            </div>
+
+            <button className="pointer-events-auto bg-[#F4B42F] bg-opacity-90 hover:bg-[#EAA622] text-[#3E1F18] border-2 border-[#3E1F18] px-6 py-3 rounded-lg font-bold uppercase tracking-wider shadow-lg transform hover:scale-105 transition-all text-sm md:text-base">
+              {slide.buttonText}
+            </button>
+          </div>
         </div>
 
         <div className="absolute bottom-32 right-[20%] md:right-[15%] pointer-events-auto animate-bounce-slow hidden md:flex">
-          <button 
+          <button
             onClick={() => navigate('/menu')}
             className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-[#3E1F18] text-[#F4B42F] flex items-center justify-center font-cursive text-xl md:text-2xl border-4 border-white shadow-xl hover:rotate-12 transition-transform cursor-pointer"
           >
@@ -95,16 +93,16 @@ const HeroSlide = ({ slide, isActive }) => {
   return (
     <div className={`w-full h-full flex flex-col md:flex-row items-center ${slide.bgColor}`}>
       <div className="w-full md:w-1/2 h-1/2 md:h-full relative order-2 md:order-1">
-         <img src={slide.image} alt={slide.title} className="w-full h-full object-cover" />
+        <img src={slide.image} alt={slide.title} className="w-full h-full object-cover" />
       </div>
       <div className="w-full md:w-1/2 h-1/2 md:h-full flex flex-col justify-center p-8 md:p-16 order-1 md:order-2 text-center md:text-left">
         <h2 className="text-4xl md:text-6xl font-bold text-[#3E1F18] mb-4 font-cursive">{slide.title}</h2>
         <h3 className="text-xl md:text-2xl text-[#E85D04] font-semibold mb-6">{slide.subtitle}</h3>
         <p className="text-gray-600 mb-8 max-w-md mx-auto md:mx-0 leading-relaxed">{slide.description}</p>
         <div>
-            <button className="bg-[#3E1F18] text-white px-8 py-3 rounded-full font-bold hover:bg-[#E85D04] transition-colors shadow-lg">
+          <button className="bg-[#3E1F18] text-white px-8 py-3 rounded-full font-bold hover:bg-[#E85D04] transition-colors shadow-lg">
             {slide.buttonText}
-            </button>
+          </button>
         </div>
       </div>
     </div>
@@ -125,27 +123,27 @@ const HeroSlider = () => {
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
 
   return (
-    <section className="relative w-full h-[500px] md:h-[600px] lg:h-[700px] bg-white overflow-hidden group">
+    <section id="hero" className="relative w-full h-[500px] md:h-[600px] lg:h-[700px] bg-white overflow-hidden group">
       {/* Slides Container */}
-      <div 
+      <div
         className="w-full h-full transition-transform duration-700 ease-in-out flex"
         style={{ transform: `translateX(-${currentSlide * 100}%)` }}
       >
         {slides.map((slide, index) => (
           <div key={slide.id} className="w-full h-full flex-shrink-0 relative">
-             <HeroSlide slide={slide} isActive={index === currentSlide} />
+            <HeroSlide slide={slide} isActive={index === currentSlide} />
           </div>
         ))}
       </div>
 
       {/* Navigation Arrows */}
-      <button 
+      <button
         onClick={prevSlide}
         className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/50 hover:bg-white text-[#3E1F18] p-2 rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity"
       >
         <ChevronLeft size={32} />
       </button>
-      <button 
+      <button
         onClick={nextSlide}
         className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/50 hover:bg-white text-[#3E1F18] p-2 rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity"
       >
@@ -158,9 +156,8 @@ const HeroSlider = () => {
           <button
             key={idx}
             onClick={() => setCurrentSlide(idx)}
-            className={`w-3 h-3 rounded-full transition-all ${
-              currentSlide === idx ? 'bg-[#3E1F18] w-6' : 'bg-[#3E1F18]/30 hover:bg-[#3E1F18]/50'
-            }`}
+            className={`w-3 h-3 rounded-full transition-all ${currentSlide === idx ? 'bg-[#3E1F18] w-6' : 'bg-[#3E1F18]/30 hover:bg-[#3E1F18]/50'
+              }`}
           />
         ))}
       </div>
@@ -177,9 +174,9 @@ export const FloatingActions = () => {
       <a href="#" className="w-12 h-12 bg-[#25D366] rounded-full flex items-center justify-center text-white shadow-lg hover:scale-110 transition-transform">
         <MessageCircle size={24} />
       </a>
-       <div className="w-12 h-8 flex items-center justify-center">
-         <div className="w-0 h-0 border-l-[10px] border-l-transparent border-t-[15px] border-t-[#F4B42F] border-r-[10px] border-r-transparent animate-bounce"></div>
-       </div>
+      <div className="w-12 h-8 flex items-center justify-center">
+        <div className="w-0 h-0 border-l-[10px] border-l-transparent border-t-[15px] border-t-[#F4B42F] border-r-[10px] border-r-transparent animate-bounce"></div>
+      </div>
     </div>
   );
 };

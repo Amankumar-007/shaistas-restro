@@ -41,17 +41,17 @@ const MenuSection = () => {
 
   // Data for the "Zaika-E-Khaas" view with images and descriptions
   const zaikaCategories = [
-    { 
+    {
       name: "Veg",
       image: menuVeg,
       description: "Enjoy a variety of vegetarian specialties, carefully crafted with the freshest ingredients to create a truly unique dining experience."
     },
-    { 
+    {
       name: "Non-Veg",
       image: menuNonVeg,
       description: "Delight in our mouthwatering selection of non-veg specialties, crafted with the freshest ingredients and bursting with flavor."
     },
-    { 
+    {
       name: "Desserts",
       image: menuDessert,
       description: "Desserts are a sweet symphony for your taste buds, from creamy and decadent to light and fruity, a perfect way to end any meal."
@@ -61,24 +61,23 @@ const MenuSection = () => {
   return (
     <section className="w-full py-12 px-4 bg-white font-sans text-gray-800">
       <div className="max-w-7xl mx-auto">
-        
+
         {/* Header */}
         <h2 className="text-4xl font-serif font-bold text-center mb-12 text-[#3a2a2a]">
           Our Menu
         </h2>
 
         <div className="flex flex-col lg:flex-row gap-8">
-          
+
           {/* Sidebar Navigation */}
           <div className="flex lg:flex-col gap-4 justify-center lg:justify-start lg:w-1/5 min-w-[200px]">
             {/* Take Away Button */}
             <button
               onClick={() => setActiveTab('takeaway')}
-              className={`flex flex-col items-center justify-center p-8 border rounded-md transition-all duration-300 h-40 ${
-                activeTab === 'takeaway' 
-                  ? 'border-yellow-400 text-yellow-500' 
-                  : 'border-gray-800 text-gray-800 hover:bg-gray-50'
-              }`}
+              className={`flex flex-col items-center justify-center p-8 border rounded-md transition-all duration-300 h-40 ${activeTab === 'takeaway'
+                ? 'border-yellow-400 text-yellow-500'
+                : 'border-gray-800 text-gray-800 hover:bg-gray-50'
+                }`}
             >
               <Store size={40} className="mb-3" strokeWidth={1.5} />
               <span className="font-medium text-lg">Take Away</span>
@@ -87,11 +86,10 @@ const MenuSection = () => {
             {/* Zaika-E-Khaas Button */}
             <button
               onClick={() => setActiveTab('zaika')}
-              className={`flex flex-col items-center justify-center p-8 border rounded-md transition-all duration-300 h-40 ${
-                activeTab === 'zaika' 
-                  ? 'border-yellow-400 text-yellow-500' 
-                  : 'border-gray-800 text-gray-800 hover:bg-gray-50'
-              }`}
+              className={`flex flex-col items-center justify-center p-8 border rounded-md transition-all duration-300 h-40 ${activeTab === 'zaika'
+                ? 'border-yellow-400 text-yellow-500'
+                : 'border-gray-800 text-gray-800 hover:bg-gray-50'
+                }`}
             >
               <UtensilsCrossed size={40} className="mb-3" strokeWidth={1.5} />
               <span className="font-medium text-lg">Zaika-E-Khaas</span>
@@ -107,21 +105,21 @@ const MenuSection = () => {
                   <div key={item.id} className="border border-gray-200 p-4 flex flex-col items-center text-center h-full hover:shadow-lg transition-shadow">
                     {/* Circular Image Container */}
                     <div className="w-40 h-40 rounded-full overflow-hidden mb-4 border-4 border-white shadow-sm">
-                      <img 
-                        src={item.image} 
-                        alt={item.name} 
+                      <img
+                        src={item.image}
+                        alt={item.name}
                         className="w-full h-full object-cover"
                       />
                     </div>
-                    
+
                     <h3 className="font-serif text-xl font-bold text-[#4A2C2A] mb-3">
                       {item.name}
                     </h3>
-                    
+
                     <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-grow">
                       {item.description}
                     </p>
-                    
+
                     <span className="font-bold text-[#4A2C2A] mt-auto">
                       ₹ {item.price}/-
                     </span>
@@ -132,14 +130,14 @@ const MenuSection = () => {
               // GRID FOR ZAIKA (Category Cards with Centered Icons and Descriptions)
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 animate-in fade-in zoom-in duration-300">
                 {zaikaCategories.map((cat, index) => (
-                  <div 
-                    key={index} 
+                  <div
+                    key={index}
                     className="border border-gray-200 rounded-sm overflow-hidden hover:shadow-lg transition-all duration-300 bg-white flex flex-col h-full"
                   >
                     <div className="h-48 flex items-center justify-center bg-gray-50 p-4">
                       <div className="w-32 h-32 flex items-center justify-center">
-                        <img 
-                          src={cat.image} 
+                        <img
+                          src={cat.image}
                           alt={cat.name}
                           className="max-w-full max-h-full object-contain"
                           style={{ imageRendering: 'auto' }}
@@ -163,7 +161,7 @@ const MenuSection = () => {
 
         {/* Read More Button */}
         <div className="flex justify-center mt-12">
-          <button className="px-8 py-3 border-2 border-gray-800 text-gray-800 font-medium tracking-wide hover:bg-gray-800 hover:text-white transition-colors uppercase text-sm">
+          <button className="px-8 py-3 bg-[#548774] font-medium tracking-wide hover:bg-[#3d6158] hover:text-white transition-colors uppercase text-sm">
             Read More
           </button>
         </div>

@@ -50,7 +50,6 @@ function App() {
               <section id="zaika-e-khaas">
                 <VideoComponent />
               </section>
-              <ScrollHandle />  
               <MenuHighlights /> <section id="catering">
                 <OpeningHoursSection />
               </section>

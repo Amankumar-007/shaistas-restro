@@ -3,7 +3,7 @@ import { Phone, MessageCircle, ChevronUp, MapPin } from 'lucide-react';
 
 const ContactSection = () => {
   return (
-    <section className="relative w-full bg-[#e2c996] py-16 px-4 md:px-12 lg:px-24 font-sans text-gray-800">
+    <section className="relative w-full bg-[#EAF4EE] py-16 px-4 md:px-12 lg:px-24 font-sans text-gray-800">
       
       {/* Optional Main Title Requested */}
       <h2 className="text-center text-4xl font-serif text-orange-400/90 mb-12 tracking-wide font-bold">
@@ -68,7 +68,7 @@ const ContactSection = () => {
           ></textarea>
 
           <div className="mt-2">
-            <button className="bg-white border border-black px-8 py-3 text-sm font-semibold uppercase tracking-wider hover:bg-gray-100 transition-colors">
+            <button className="bg-[#548774] border-black px-8 py-3 text-sm font-semibold uppercase tracking-wider hover:bg-gray-100 transition-colors">
               Send Message
             </button>
           </div>

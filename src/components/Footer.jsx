@@ -1,24 +1,24 @@
 import React from 'react';
-import { 
-  Facebook, 
-  Instagram, 
-  Youtube, 
-  ChevronRight, 
-  MapPin, 
-  Phone, 
-  Mail, 
-  Globe, 
-  ArrowUp, 
-  MessageCircle 
+import {
+  Facebook,
+  Instagram,
+  Youtube,
+  ChevronRight,
+  MapPin,
+  Phone,
+  Mail,
+  Globe,
+  ArrowUp,
+  MessageCircle
 } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer className="relative bg-[#1a1a1a] text-gray-300 pt-16 font-sans">
+    <footer className="relative bg-[#E5E7DD] text-gray-800 pt-16 font-sans">
       {/* Main Container */}
       <div className="container mx-auto px-4 pb-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          
+
           {/* Column 1: Brand & About */}
           <div className="space-y-6">
             {/* Logo Section */}
@@ -27,12 +27,12 @@ const Footer = () => {
               <h1 className="text-4xl text-[#fbbf24] font-cursive italic font-bold mb-1">
                 Shaista's
               </h1>
-              <p className="text-[#fbbf24] text-sm italic font-medium">
+              <h3 className="text-lg font-bold mb-4 text-black">
                 Mommylicious Food, Served with Love!
-              </p>
+              </h3>
             </div>
 
-            <p className="text-sm leading-relaxed text-gray-200">
+            <p className="text-sm leading-relaxed text-gray-600">
               At Shaista's, we offer a wide range of home-style Biryanis, Mughlai, and North Indian dishes that will tantalize your taste buds. So come and join us for Indian flavors.
             </p>
 
@@ -116,8 +116,8 @@ const FooterLink = ({ text }) => (
 
 // Helper Component for Social Icons
 const SocialIcon = ({ icon }) => (
-  <a 
-    href="#" 
+  <a
+    href="#"
     className="w-10 h-10 bg-[#fbbf24] rounded-full flex items-center justify-center text-[#1a1a1a] hover:bg-white hover:text-[#fbbf24] transition-all duration-300"
   >
     {icon}

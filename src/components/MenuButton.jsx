@@ -44,17 +44,17 @@ const MenuButton = () => {
         {/* Close button */}
         <button
           onClick={handleClose}
-          className="absolute -top-2 -right-2 w-6 h-6 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-100 transition-colors z-10"
+          className="absolute -top-1 -right-1 w-5 h-5 md:w-6 md:h-6 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-100 transition-colors z-10"
           aria-label="Close menu button"
         >
-          <X size={14} className="text-gray-700" />
+          <X size={12} className="text-gray-700 md:size-[14px]" />
         </button>
         
         <button
           onClick={openPdf}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          className={`relative w-24 h-24 cursor-pointer rounded-full bg-gradient-to-br from-[#8B0000] to-[#A52A2A] 
+          className={`relative w-16 h-16 md:w-24 md:h-24 cursor-pointer rounded-full bg-[#548774] 
           transition-all duration-300 flex flex-col items-center justify-center shadow-xl 
           transform ${isHovered ? 'scale-105' : 'scale-100'}
           hover:shadow-[0_0_15px_2px_rgba(255,215,0,0.3)]`}

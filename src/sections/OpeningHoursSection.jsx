@@ -15,7 +15,7 @@ const OpeningHoursSection = () => {
     <div className="w-full font-serif">
       
       {/* 1. White Title Section */}
-      <div className="bg-white py-8 flex justify-center items-center">
+      <div className="bg-[#EAF4EE] py-8 flex justify-center items-center">
         <h2 className="text-3xl md:text-4xl font-bold text-[#3a3a3a] tracking-tight">
           Opening Hours
         </h2>
