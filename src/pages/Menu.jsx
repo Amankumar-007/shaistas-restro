@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { UtensilsCrossed, Store, IceCream, Snowflake, Loader2 } from 'lucide-react';
 import menuData from '../assets/menuData/MenuData.json';
 import ScrollHandle from '../components/ScrollHandle';
-import PDFViewer from '../components/PDFViewer';
 
 // Component for rendering specific icons based on string name
 const CategoryIcon = ({ name, isActive }) => {

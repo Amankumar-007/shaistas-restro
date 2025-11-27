@@ -228,17 +228,6 @@ const HeroSlider = () => {
   );
 };
 
-export const FloatingActions = () => {
-  return (
-    <div className="fixed bottom-6 right-6 flex flex-col gap-3 z-50">
-      <a href="tel:+1234567890" className="w-12 h-12 bg-[#3E1F18] rounded-full flex items-center justify-center text-white shadow-lg hover:scale-110 transition-transform hover:bg-[#E85D04]">
-        <Phone size={20} />
-      </a>
-      <a href="https://wa.me/1234567890" className="w-12 h-12 bg-[#25D366] rounded-full flex items-center justify-center text-white shadow-lg hover:scale-110 transition-transform">
-        <MessageCircle size={24} />
-      </a>
-    </div>
-  );
-};
+
 
 export default HeroSlider;
