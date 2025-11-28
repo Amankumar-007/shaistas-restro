@@ -1,27 +1,30 @@
 import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import ScrollToTop from './components/ScrollToTop';
 import HeroSlider from './components/Hero';
 import './App.css';
 import VideoComponent from './components/VideoComponent';
 import ServicesSection from './sections/ServicesSection';
-import ScrollHandle from './components/ScrollHandle';
 import MenuHighlights from './components/MenuHighlights';
 import OpeningHoursSection from './sections/OpeningHoursSection';
-import MenuSection from './sections/MenuSection';
 import Testomonials from './sections/Testomonials';
-import Menu from './pages/Menu';
-import ContactSection from './sections/ContactSection';
+import Menu from './pages/menu/Menu';
 import Map from './components/Map';
-import Footer from './components/Footer';
-import MenuButton from './components/MenuButton';
 import Gallery from './sections/Gallery';
+import ContactPage from './pages/Contact/ContactPage';
+import About from './pages/About-us/About';
+import Catering from './pages/catering/Catering';
+import GalleryPage from './pages/gallery-page/GalleryPage';
+import MommyliciousMealbox from './pages/MommyliciousMealbox/MommyliciousMealbox';
+
 function App() {
   const [count, setCount] = useState(0);
 
   return (
     <Router>
       <div className="min-h-screen bg-gray-50 font-sans text-gray-800">
+        <ScrollToTop />
         <style>{`
           @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;500&family=Pacifico&family=Playball&family=Poppins:wght@400;600;800&display=swap');
           
@@ -37,7 +40,6 @@ function App() {
 
         <Navbar />
         
-        <MenuButton />
         <Routes>
           <Route path="/" element={
             <main>
@@ -53,25 +55,29 @@ function App() {
               <MenuHighlights /> <section id="catering">
                 <OpeningHoursSection />
               </section>
-              <section id="menu">
-                <MenuSection />
-              </section>
+                 {/* <section id="menu">
+                    <MenuSection />
+                  </section>*/}
               <section id="gallery">
                 <Gallery />
               </section>
               <section id="testomonials">
                 <Testomonials />
               </section>
-              <section id="contact">
+            {/* <section id="contact">
                 <ContactSection />
-              </section>
+              </section> */}
               <section id="map">
                 <Map />
               </section>
-              <Footer />
             </main>
           } />
           <Route path="/menu" element={<Menu />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/catering" element={<Catering />} />
+          <Route path="/gallery" element={<GalleryPage />} />
+          <Route path="/mommylicious-mealbox" element={<MommyliciousMealbox />} />
         </Routes>
       </div>
     </Router>

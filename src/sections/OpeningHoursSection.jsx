@@ -3,43 +3,13 @@ import { Phone, MessageCircle, ChevronUp } from 'lucide-react';
 import HeroImage from '../assets/Hero.webp';
 
 const OpeningHoursSection = () => {
-  const [showFloatingButtons, setShowFloatingButtons] = useState(false);
-  const [scrollY, setScrollY] = useState(0);
-
-  // Handler for Scroll to Top
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  };
-
-  // Handle scroll to show/hide floating buttons
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      setScrollY(currentScrollY);
-      
-      // Hide buttons when at the top (hero section), show when scrolled
-      const heroSectionHeight = window.innerHeight;
-      setShowFloatingButtons(currentScrollY > heroSectionHeight * 0.5);
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    
-    // Initial check
-    handleScroll();
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+  
 
   return (
     <div className="w-full font-serif">
       
       {/* 1. White Title Section */}
-      <div className="bg-[#EAF4EE] py-8 flex justify-center items-center">
+      <div className=" py-8 flex justify-center items-center">
         <h2 className="text-3xl md:text-4xl font-bold text-[#3a3a3a] tracking-tight">
           Opening Hours
         </h2>
@@ -81,38 +51,7 @@ const OpeningHoursSection = () => {
       </div>
 
       {/* 3. Floating Action Buttons (Bottom Right) */}
-      <div className={`fixed bottom-8 right-8 flex gap-3 z-50 transition-all duration-300 ${showFloatingButtons ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-20 pointer-events-none'}`}>
-        
-        {/* Phone Button */}
-        <a 
-          href="tel:+919643803833" 
-          className="w-12 h-12 rounded-full bg-[#3d1815] hover:bg-[#5a2420] text-white flex items-center justify-center transition-colors duration-300 shadow-lg"
-          aria-label="Call Us"
-        >
-          <Phone size={20} fill="currentColor" className="text-white" />
-        </a>
-
-        {/* WhatsApp Button */}
-        <a 
-          href="https://wa.me/919643803833" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="w-12 h-12 rounded-full bg-[#3d1815] hover:bg-[#5a2420] text-white flex items-center justify-center transition-colors duration-300 shadow-lg"
-          aria-label="WhatsApp Us"
-        >
-          <MessageCircle size={20} className="text-white" />
-        </a>
-
-        {/* Scroll Top Button */}
-        <button 
-          onClick={scrollToTop}
-          className="w-12 h-12 rounded-full bg-[#ffc107] hover:bg-[#ffcd38] text-white flex items-center justify-center transition-colors duration-300 shadow-lg"
-          aria-label="Scroll to Top"
-        >
-          <ChevronUp size={24} strokeWidth={3} />
-        </button>
-
-      </div>
+      
 
     </div>
   );

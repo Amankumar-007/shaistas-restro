@@ -16,7 +16,18 @@ const MenuButton = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [isPulsing, setIsPulsing] = useState(true);
   const [isVisible, setIsVisible] = useState(true);
-  
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Show button only after scrolling 300px down
+      setIsScrolled(window.scrollY > 300);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   // Disable pulsing effect for a cleaner look
   useEffect(() => {
     setIsPulsing(false);
@@ -33,8 +44,10 @@ const MenuButton = () => {
 
   if (!isVisible) return null;
 
+  if (!isScrolled) return null;
+
   return (
-    <div className="fixed right-18 bottom-30 z-50">
+    <div className="fixed right-18 bottom-30 z-50 transition-opacity duration-300" style={{ opacity: isScrolled ? 1 : 0 }}>
       <div className="relative">
         {/* Subtle hover effect */}
         <div className={`absolute inset-0 rounded-full bg-[#FFD700] opacity-0 transition-opacity duration-300 ${

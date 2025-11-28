@@ -96,19 +96,34 @@ export default function Gallery() {
   };
 
   return (
-    <div className="min-h-screen font-sans bg-[#EAF4EE] py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen font-sans bg-[#F7F1E8] py-16 px-4 sm:px-6 lg:px-8 text-[#3F2A1E]">
       <div className="max-w-7xl mx-auto">
+
         {/* Header Section */}
         <motion.header 
           className="text-center mb-20"
+
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <div className="inline-block mb-4">
-            <span className="text-amber-600 text-sm font-bold tracking-wider uppercase">Our Menu</span>
+          <div className="text-center mb-16">
+          <h4 className="text-[#A67C52] font-serif text-lg tracking-wide mb-2">
+
+            Discover
+          </h4>
+          <h2 className="text-4xl md:text-5xl font-serif text-[#3F2A1E] mb-6 tracking-tight">
+
+            Explore Our Dishes
+          </h2>
+          
+          <div className="flex items-center justify-center gap-3 mb-8 opacity-60">
+           <div className="h-[1px] w-12 bg-[#A67C52]"></div>
+           <div className="text-[#A67C52] text-xs">✦ ✦ ✦</div>
+           <div className="h-[1px] w-12 bg-[#A67C52]"></div>
+
           </div>
-          <h1 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-6">Explore Our Dishes</h1>
+        </div>
           
           {/* Category Filters */}
           <motion.div 

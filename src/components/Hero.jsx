@@ -1,233 +1,224 @@
-import React, { useState, useEffect } from 'react';
-import { Phone, MessageCircle, ChevronLeft, ChevronRight } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect, useCallback } from 'react';
+import { ShoppingCart, ChevronLeft, ChevronRight } from 'lucide-react';
 
-// --- Assets & Data ---
-const slides = [
+const slidesData = [
   {
     id: 1,
-    type: 'special',
-    bgImage: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=2000",
-    title: "Mommylicious",
-    highlight: "MEALBOX",
-    subtext: "by Shaista's",
-    buttonText: "VIEW MEALBOX",
-    path: "/mealbox"
+    badge: "Welcome to Hotspot",
+    heading_line1: "Order Food",
+    heading_line2: "Online",
+    heading_highlight: "From Hotspot",
+    subtext: "Fresh, delicious meals crafted with love and delivered fast. Your cravings, satisfied.",
+    buttonText: "Order Now",
+    bgImage: "https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg", // Diverse table spread
+    images: [
+      "https://images.pexels.com/photos/699953/pexels-photo-699953.jpeg", // Curry
+      "https://images.unsplash.com/photo-1572490122747-3968b75cc699?q=80&w=800&auto=format&fit=crop", // Milkshake
+      "https://images.unsplash.com/photo-1608219992759-8d74ed8d76eb?q=80&w=800&auto=format&fit=crop", // Creamy Pasta
+      "https://images.unsplash.com/photo-1555949258-eb67b1ef0ceb?q=80&w=800&auto=format&fit=crop", // Spicy Pasta
+    ],
+    accentColor: "#ff5400"
   },
   {
     id: 2,
-    type: 'standard',
-    title: "Zaika-E-Khaas",
-    subtitle: "Authentic Flavors",
-    description: "Experience the royal taste of our special curries and biryanis.",
-    buttonText: "ORDER NOW",
-    path: "/order",
-    image: "https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&q=80&w=1000"
+    badge: "New Arrivals",
+    heading_line1: "Discover Our",
+    heading_line2: "Latest",
+    heading_highlight: "Creations",
+    subtext: "Explore our newest dishes, from gourmet burgers to refreshing salads. A taste adventure awaits!",
+    buttonText: "See What's New",
+    bgImage: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=2000&auto=format&fit=crop", // Moody restaurant ambience
+    images: [
+      "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=800&auto=format&fit=crop", // Burger
+      "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=800&auto=format&fit=crop", // Salad
+      "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=800&auto=format&fit=crop", // Pizza
+      "https://images.unsplash.com/photo-1482049016688-2d3e1b311543?q=80&w=800&auto=format&fit=crop", // Sandwich
+    ],
+    accentColor: "#eab308" // Yellow
   },
   {
     id: 3,
-    type: 'standard',
-    title: "Catering Services",
-    subtitle: "Make Events Memorable",
-    description: "From birthday bashes to weddings, we serve love in every plate.",
-    buttonText: "GET A QUOTE",
-    path: "/catering",
-    image: "https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&q=80&w=1000"
+    badge: "Best Sellers",
+    heading_line1: "Your All-Time",
+    heading_line2: "Favorite",
+    heading_highlight: "Dishes",
+    subtext: "The classics you love, made with the finest ingredients. You can't go wrong with these crowd-pleasers.",
+    buttonText: "Order Favorites",
+    bgImage: "https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=2000&auto=format&fit=crop", // Rich Italian background
+    images: [
+      "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?q=80&w=800&auto=format&fit=crop", // Chicken
+      "https://images.unsplash.com/photo-1512058564366-18510be2db19?q=80&w=800&auto=format&fit=crop", // Noodles
+      "https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?q=80&w=800&auto=format&fit=crop", // Thai Curry
+      "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?q=80&w=800&auto=format&fit=crop", // Fried Rice
+    ],
+    accentColor: "#22c55e" // Green
   }
 ];
 
-const HeroSlide = ({ slide, isActive }) => {
-  const navigate = useNavigate();
+export default function App() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
-  // Animation classes
-  const animTitle = isActive ? "animate-fade-in-up delay-100" : "opacity-0";
-  const animSub = isActive ? "animate-fade-in-up delay-200" : "opacity-0";
-  const animBtn = isActive ? "animate-fade-in-up delay-300" : "opacity-0";
+  const nextSlide = useCallback(() => {
+    setCurrentSlide((prev) => (prev + 1) % slidesData.length);
+  }, []);
 
-  // --- SLIDE TYPE 1: The "Special" Branding Slide ---
-  if (slide.type === 'special') {
-    return (
-      <div className="relative w-full h-full bg-[#FFFBF2] overflow-hidden flex flex-col md:flex-row">
-        
-        {/* Mobile: Full Background | Desktop: Split Right */}
-        <div className="absolute inset-0 md:relative md:w-3/5 h-full order-1 md:order-2">
-          {/* Mobile Overlay Gradient (Crucial for text readability) */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent md:hidden z-10" />
-          {/* Desktop Overlay Gradient */}
-          <div className="hidden md:block absolute inset-0 bg-gradient-to-r from-[#FFFBF2] via-transparent to-transparent z-10" />
-          
-          <img
-            src={slide.bgImage}
-            alt="Mommylicious Feast"
-            className="w-full h-full object-cover object-center md:object-left animate-ken-burns"
-          />
-        </div>
+  const prevSlide = useCallback(() => {
+    setCurrentSlide((prev) => (prev - 1 + slidesData.length) % slidesData.length);
+  }, []);
 
-        {/* Content Section */}
-        <div className="absolute inset-0 md:relative md:inset-auto md:w-2/5 h-full z-20 flex flex-col justify-end md:justify-center items-start pb-24 px-6 md:pl-20 md:pb-0 text-left order-2 md:order-1">
-          
-          <div className={`transform transition-all duration-700 ${isActive ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-            <h2 className="text-5xl md:text-7xl font-bold text-white md:text-[#4A2C2A] font-cursive leading-tight drop-shadow-md md:drop-shadow-none">
-              {slide.title}
-            </h2>
-            <h3 className="text-4xl md:text-6xl font-extrabold text-[#F4B42F] md:text-[#E85D04] tracking-wide mt-[-5px] md:mt-[-10px] drop-shadow-sm">
-              {slide.highlight}
-            </h3>
-            <p className="text-xl text-gray-200 md:text-[#4A2C2A] font-serif mt-2 italic flex items-center gap-2">
-              {slide.subtext}
-              <span className="hidden md:inline-block w-8 h-[2px] bg-[#F4B42F]"></span>
-            </p>
+  const goToSlide = (index) => {
+    setCurrentSlide(index);
+    setIsAutoPlaying(false); // Pause auto-play on manual interaction
+  };
 
-            <button 
-              onClick={() => navigate(slide.path)}
-              className="mt-6 bg-[#F4B42F] text-[#3E1F18] border-2 border-[#3E1F18] md:border-[#3E1F18] px-8 py-3 rounded-xl font-bold uppercase tracking-wider shadow-lg md:shadow-[4px_4px_0px_0px_rgba(62,31,24,1)] hover:scale-105 transition-all"
-            >
-              {slide.buttonText}
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  }
+  useEffect(() => {
+    let interval;
+    if (isAutoPlaying) {
+      interval = setInterval(nextSlide, 5000);
+    }
+    return () => clearInterval(interval);
+  }, [isAutoPlaying, nextSlide]);
 
-  // --- SLIDE TYPE 2: Standard Content Slide ---
   return (
-    <div className="w-full h-full relative flex md:flex-row bg-[#3E1F18]">
+    <div className="min-h-[70vh] md:min-h-screen w-full relative overflow-hidden font-sans selection:bg-orange-200">
       
-      {/* Background Image Wrapper (Full on Mobile, Half on Desktop) */}
-      <div className="absolute inset-0 md:relative md:w-1/2 h-full overflow-hidden">
-        {/* Dark overlay for Mobile Text Readability */}
-        <div className="absolute inset-0 bg-black/60 md:bg-black/20 z-10" />
-        <img 
-          src={slide.image} 
-          alt={slide.title} 
-          className="w-full h-full object-cover animate-ken-burns" 
+      {/* Dynamic Background Image with Crossfade */}
+      {slidesData.map((slide, index) => (
+        <div
+          key={`bg-${slide.id}`}
+          className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out ${
+            index === currentSlide ? 'opacity-100' : 'opacity-0'
+          }`}
+          style={{ backgroundImage: `url('${slide.bgImage}')` }}
         />
-      </div>
+      ))}
 
-      {/* Text Content */}
-      <div className="relative z-20 w-full h-full md:w-1/2 flex flex-col justify-end md:justify-center items-start p-8 pb-24 md:p-16 md:pb-0 text-left text-white">
-        <h2 className={`text-4xl md:text-5xl font-bold font-cursive text-[#F4B42F] mb-2 drop-shadow-md ${animTitle}`}>
-          {slide.title}
-        </h2>
-        <h3 className={`text-2xl md:text-3xl font-semibold mb-3 text-gray-100 drop-shadow-sm ${animSub}`}>
-          {slide.subtitle}
-        </h3>
-        <p className={`text-gray-200 md:text-gray-300 text-base md:text-lg mb-8 max-w-sm leading-relaxed drop-shadow-sm ${animSub}`}>
-          {slide.description}
-        </p>
-        <button 
-          onClick={() => navigate(slide.path)}
-          className={`bg-[#F4B42F] text-[#3E1F18] px-8 py-3 rounded-full font-bold hover:bg-white transition-colors shadow-lg ${animBtn}`}
-        >
-          {slide.buttonText}
-        </button>
+      {/* Dark Overlay for readability */}
+      <div className="absolute inset-0 bg-black/60 z-0"></div>
+
+      {/* Navigation Arrows */}
+      <button 
+        onClick={() => { prevSlide(); setIsAutoPlaying(false); }}
+        className="hidden md:block absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/30 text-white transition-all duration-300 focus:outline-none group"
+      >
+        <ChevronLeft className="w-8 h-8 group-hover:-translate-x-1 transition-transform" />
+      </button>
+
+      <button 
+        onClick={() => { nextSlide(); setIsAutoPlaying(false); }}
+        className="hidden md:block absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/30 text-white transition-all duration-300 focus:outline-none group"
+      >
+        <ChevronRight className="w-8 h-8 group-hover:translate-x-1 transition-transform" />
+      </button>
+
+      {/* Slider Container */}
+      <div className="relative z-10 h-[70vh] md:h-screen w-full">
+        {slidesData.map((slide, index) => (
+          <div 
+            key={slide.id}
+            className={`absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out ${
+              index === currentSlide ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+            }`}
+          >
+            <div className="container mx-auto px-4 md:px-8 lg:px-16 h-full flex flex-col md:flex-row items-center justify-center md:justify-center gap-12 py-12">
+              
+              {/* Left Content - Centered on mobile */}
+              <div 
+                className={`flex-1 flex flex-col items-center md:items-start text-center md:text-left space-y-6 md:space-y-8 max-w-2xl text-white transition-all duration-1000 transform ${
+                  index === currentSlide ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+                }`}
+              >
+                
+                {/* Badge */}
+                <div className="bg-white/10 backdrop-blur-sm text-white px-5 py-2 rounded-full text-sm font-bold tracking-wide shadow-sm cursor-default">
+                  {slide.badge}
+                </div>
+
+                {/* Heading */}
+                <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.1] tracking-tight">
+                  {slide.heading_line1} <br />
+                  <span>{slide.heading_line2}</span> <br />
+                  <span style={{ color: slide.accentColor }}>{slide.heading_highlight}</span>
+                </h1>
+
+                {/* Subtext */}
+                <p className="text-white/80 text-lg md:text-xl leading-relaxed max-w-lg font-medium">
+                  {slide.subtext}
+                </p>
+
+                {/* CTA Button */}
+                <button 
+                  className="group text-white px-8 py-4 rounded-full font-bold text-lg shadow-lg flex items-center gap-3 transition-all duration-300 hover:-translate-y-1 active:translate-y-0"
+                  style={{ backgroundColor: slide.accentColor, boxShadow: `0 8px 20px -6px ${slide.accentColor}80` }}
+                >
+                  <ShoppingCart className="w-6 h-6 group-hover:animate-bounce" />
+                  <span>{slide.buttonText}</span>
+                </button>
+              </div>
+
+              {/* Right Content - Image Grid collage - Hidden on mobile */}
+              <div 
+                className={`hidden md:block flex-1 w-full max-w-xl lg:max-w-2xl relative transition-all duration-1000 delay-300 transform ${
+                  index === currentSlide ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'
+                }`}
+              >
+                <div className="grid grid-cols-2 gap-4 md:gap-6 p-4">
+                  
+                  {/* Top Left */}
+                  <div className="col-span-1 row-span-1 pt-8">
+                    <div className="relative group overflow-hidden rounded-2xl shadow-xl transition-transform duration-500 hover:scale-[1.02]">
+                      <img src={slide.images[0]} alt="Food 1" className="w-full h-48 md:h-56 object-cover" />
+                      <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors"></div>
+                    </div>
+                  </div>
+
+                  {/* Top Right */}
+                  <div className="col-span-1 row-span-1">
+                    <div className="relative group overflow-hidden rounded-2xl shadow-xl transition-transform duration-500 hover:scale-[1.02]">
+                      <img src={slide.images[1]} alt="Food 2" className="w-full h-40 md:h-48 object-cover" />
+                      <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors"></div>
+                    </div>
+                  </div>
+
+                  {/* Bottom Left */}
+                  <div className="col-span-1 row-span-1">
+                    <div className="relative group overflow-hidden rounded-2xl shadow-xl transition-transform duration-500 hover:scale-[1.02]">
+                      <img src={slide.images[2]} alt="Food 3" className="w-full h-48 md:h-56 object-cover" />
+                      <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors"></div>
+                    </div>
+                  </div>
+
+                  {/* Bottom Right */}
+                  <div className="col-span-1 row-span-1 -mt-8">
+                    <div className="relative group overflow-hidden rounded-2xl shadow-xl transition-transform duration-500 hover:scale-[1.02]">
+                      <img src={slide.images[3]} alt="Food 4" className="w-full h-56 md:h-64 object-cover" />
+                      <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors"></div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+        ))}
+
+        {/* Dots Navigation */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3 z-30">
+          {slidesData.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => goToSlide(index)}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                index === currentSlide ? 'bg-white w-8' : 'bg-white/50 hover:bg-white/80'
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
+        </div>
+
       </div>
     </div>
   );
-};
-
-const HeroSlider = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-  
-  // Touch Handling State
-  const [touchStart, setTouchStart] = useState(null);
-  const [touchEnd, setTouchEnd] = useState(null);
-
-  useEffect(() => {
-    if (isPaused) return;
-    const timer = setInterval(() => {
-      nextSlide();
-    }, 5000);
-    return () => clearInterval(timer);
-  }, [currentSlide, isPaused]);
-
-  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
-  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-
-  // Swipe Logic
-  const minSwipeDistance = 50;
-  const onTouchStart = (e) => {
-    setTouchEnd(null);
-    setTouchStart(e.targetTouches[0].clientX);
-    setIsPaused(true);
-  };
-  const onTouchMove = (e) => setTouchEnd(e.targetTouches[0].clientX);
-  const onTouchEnd = () => {
-    setIsPaused(false);
-    if (!touchStart || !touchEnd) return;
-    const distance = touchStart - touchEnd;
-    if (distance > minSwipeDistance) nextSlide();
-    if (distance < -minSwipeDistance) prevSlide();
-  };
-
-  return (
-    <section 
-      id="hero" 
-      className="relative w-full h-[100dvh] md:h-[650px] lg:h-[700px] bg-white overflow-hidden group select-none" // Changed height to 100dvh for mobile immersion
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
-      onTouchStart={onTouchStart}
-      onTouchMove={onTouchMove}
-      onTouchEnd={onTouchEnd}
-    >
-      <style>{`
-        @keyframes fade-in-up {
-          0% { opacity: 0; transform: translateY(20px); }
-          100% { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes ken-burns {
-          0% { transform: scale(1); }
-          100% { transform: scale(1.1); }
-        }
-        .animate-fade-in-up { animation: fade-in-up 0.8s ease-out forwards; }
-        .animate-ken-burns { animation: ken-burns 10s ease-out infinite alternate; }
-        .delay-100 { animation-delay: 0.1s; }
-        .delay-200 { animation-delay: 0.2s; }
-        .delay-300 { animation-delay: 0.3s; }
-      `}</style>
-
-      {/* Slides */}
-      <div className="w-full h-full relative">
-        {slides.map((slide, index) => (
-          <div 
-            key={slide.id} 
-            className={`absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out ${index === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
-          >
-            <HeroSlide slide={slide} isActive={index === currentSlide} />
-          </div>
-        ))}
-      </div>
-
-      {/* Desktop Arrows */}
-      <div className="hidden md:block">
-        <button onClick={prevSlide} className="absolute left-6 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-[#3E1F18] backdrop-blur-sm text-[#3E1F18] hover:text-[#F4B42F] p-3 rounded-full transition-all z-40">
-          <ChevronLeft size={32} />
-        </button>
-        <button onClick={nextSlide} className="absolute right-6 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-[#3E1F18] backdrop-blur-sm text-[#3E1F18] hover:text-[#F4B42F] p-3 rounded-full transition-all z-40">
-          <ChevronRight size={32} />
-        </button>
-      </div>
-
-      {/* Pagination Dots - Positioned higher on mobile to clear safe area */}
-      <div className="absolute bottom-8 md:bottom-6 left-6 md:left-1/2 md:-translate-x-1/2 flex gap-2 z-40">
-        {slides.map((_, idx) => (
-          <button
-            key={idx}
-            onClick={() => setCurrentSlide(idx)}
-            className={`transition-all duration-300 rounded-full shadow-sm ${
-              currentSlide === idx 
-                ? 'bg-[#F4B42F] w-8 h-2 md:w-8 md:h-3' 
-                : 'bg-white/50 hover:bg-white/80 w-2 h-2 md:w-3 md:h-3'
-            }`}
-          />
-        ))}
-      </div>
-    </section>
-  );
-};
-
-
-
-export default HeroSlider;
+}

@@ -1,83 +1,73 @@
 import React from 'react';
-import { Phone, MessageCircle, ChevronUp, MapPin } from 'lucide-react';
+import { ChevronUp, MapPin } from 'lucide-react';
 
 const ContactSection = () => {
   return (
-    <section className="relative w-full bg-[#EAF4EE] py-16 px-4 md:px-12 lg:px-24 font-sans text-gray-800">
+    <section className="relative w-full bg-[#F7F1E8] py-20 px-4 md:px-12 lg:px-24 font-sans text-[#3F2A1E] flex flex-col items-center">
       
-      {/* Optional Main Title Requested */}
-      <h2 className="text-center text-4xl font-serif text-orange-400/90 mb-12 tracking-wide font-bold">
-        Contact Us
+      {/* Subtitle */}
+      <h4 className="text-center text-lg font-serif text-[#A67C52] tracking-wide">
+        Book Your Table
+      </h4>
+
+      {/* Main Title */}
+      <h2 className="text-center text-4xl md:text-5xl font-serif text-[#3F2A1E] mb-4 tracking-wide">
+        Make A Reservation
       </h2>
 
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">
-        
-        {/* LEFT COLUMN: Info */}
-        <div className="flex flex-col gap-10">
-          
-          {/* Address */}
-          <div>
-            <h3 className="text-2xl font-serif text-orange-400 mb-4">Address</h3>
-            <div className="flex items-start gap-2 text-gray-700 leading-relaxed">
-              <MapPin className="w-5 h-5 mt-1 text-gray-800 shrink-0" />
-              <p className="text-sm md:text-base">
-                45 Ground Floor 7th, Avenue High Street,<br />
-                Sector 4 Greater Noida West, Haibatpur, Dadri<br />
-                Tehsil -2, Gautam Buddha Nagar, Uttar Pradesh -<br />
-                201318
-              </p>
-            </div>
-          </div>
-
-          <div>
-            <h3 className="text-2xl font-serif text-orange-400 mb-4">Opening Hours</h3>
-            <p className="text-gray-700 text-sm md:text-base">
-              12:30 PM to 11:45 PM
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-2xl font-serif text-orange-400 mb-4">Phone</h3>
-            <div className="text-gray-700 text-sm md:text-base space-y-2">
-              <p>+91-9643803833</p>
-              <p>+91-9643803813</p>
-            </div>
-          </div>
+      {/* Decorative Divider */}
+      <div className="flex items-center justify-center mb-6">
+        <div className="w-12 h-px bg-[#A67C52] opacity-50"></div>
+        <div className="mx-2 text-[#A67C52] font-serif">
+            <span className="text-xs">✦ ✦ ✦ ✦ ✦</span>
         </div>
+        <div className="w-12 h-px bg-[#A67C52] opacity-50"></div>
+      </div>
 
-        <div className="flex flex-col gap-4">
+      {/* Descriptive Text */}
+      <p className="text-center text-[#7A6049] max-w-2xl mx-auto mb-12 leading-relaxed">
+        You can book your table online easily in just a couple of minutes.<br />
+        We take reservations for lunch, just check the availability of your<br />
+        table.
+      </p>
+
+      {/* Form Container with Border */}
+      <div className="w-full max-w-4xl mx-auto border border-[#E1D0BD] p-8 md:p-12 bg-[#FFFDF9] rounded-2xl shadow-sm">
+        
+        {/* Form Fields */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
           <input 
             type="text" 
-            placeholder="Name" 
-            className="w-full bg-gray-50/80 p-4 rounded text-gray-700 placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-orange-300"
+            placeholder="Your Name" 
+            className="w-full bg-[#FFF8EF] p-4 rounded-lg text-[#3F2A1E] placeholder-[#B49674] border border-[#E1D0BD] focus:outline-none focus:ring-2 focus:ring-[#C58A52]/70 focus:border-transparent text-sm"
           />
+
           <input 
             type="email" 
             placeholder="Email" 
-            className="w-full bg-gray-50/80 p-4 rounded text-gray-700 placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-orange-300"
+            className="w-full bg-[#FFF8EF] p-4 rounded-lg text-[#3F2A1E] placeholder-[#B49674] border border-[#E1D0BD] focus:outline-none focus:ring-2 focus:ring-[#C58A52]/70 focus:border-transparent text-sm"
           />
+
           <input 
             type="tel" 
             placeholder="Phone Number" 
-            className="w-full bg-gray-50/80 p-4 rounded text-gray-700 placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-orange-300"
+            className="w-full bg-[#FFF8EF] p-4 rounded-lg text-[#3F2A1E] placeholder-[#B49674] border border-[#E1D0BD] focus:outline-none focus:ring-2 focus:ring-[#C58A52]/70 focus:border-transparent text-sm"
           />
-          <textarea 
-            placeholder="Message" 
-            rows={5}
-            className="w-full bg-gray-50/80 p-4 rounded text-gray-700 placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-orange-300 resize-none"
-          ></textarea>
-
-          <div className="mt-2">
-            <button className="bg-[#548774] border-black px-8 py-3 text-sm font-semibold uppercase tracking-wider hover:bg-gray-100 transition-colors">
-              Send Message
-            </button>
-          </div>
         </div>
 
+        <textarea 
+          placeholder="Message" 
+          rows={5}
+          className="w-full bg-[#FFF8EF] p-4 rounded-lg text-[#3F2A1E] placeholder-[#B49674] border border-[#E1D0BD] focus:outline-none focus:ring-2 focus:ring-[#C58A52]/70 focus:border-transparent resize-none mb-6 text-sm"
+        ></textarea>
+
+        {/* Submit Button */}
+        <div className="mt-2">
+          <button className="w-full bg-[#B4733C] text-white px-8 py-4 text-sm font-semibold tracking-wide hover:bg-[#9C6130] transition-colors rounded-full shadow-sm">
+            Find A Table
+          </button>
+        </div>
       </div>
-
-      
-
     </section>
   );
 };

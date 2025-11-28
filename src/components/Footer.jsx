@@ -14,9 +14,9 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="relative bg-[#E5E7DD] text-gray-800 pt-16 font-sans">
+    <footer className="relative bg-[#EDE7D9] text-[#3E2723] pt-16 font-sans">
       {/* Main Container */}
-      <div className="container mx-auto px-4 pb-12">
+      <div className="container mx-auto px-15 pb-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
 
           {/* Column 1: Brand & About */}
@@ -24,15 +24,15 @@ const Footer = () => {
             {/* Logo Section */}
             <div>
               {/* Replace this text with your actual Logo Image tag if you have one */}
-              <h1 className="text-4xl text-[#fbbf24] font-cursive italic font-bold mb-1">
+              <h1 className="text-4xl text-[#3E2723] font-cursive italic font-bold mb-1">
                 Shaista's
               </h1>
-              <h3 className="text-lg font-bold mb-4 text-black">
+              <h3 className="text-lg font-bold mb-4 text-[#3E2723]">
                 Mommylicious Food, Served with Love!
               </h3>
             </div>
 
-            <p className="text-sm leading-relaxed text-gray-600">
+            <p className="text-sm leading-relaxed text-[#5D4037]">
               At Shaista's, we offer a wide range of home-style Biryanis, Mughlai, and North Indian dishes that will tantalize your taste buds. So come and join us for Indian flavors.
             </p>
 
@@ -46,7 +46,7 @@ const Footer = () => {
 
           {/* Column 2: Quick Links */}
           <div>
-            <h3 className="text-white text-xl font-serif mb-6 uppercase tracking-wide">Quick Links</h3>
+            <h3 className="text-[#3E2723] text-xl font-serif mb-6 uppercase tracking-wide">Quick Links</h3>
             <ul className="space-y-3">
               <FooterLink text="About" />
               <FooterLink text="Menu" />
@@ -58,7 +58,7 @@ const Footer = () => {
 
           {/* Column 3: Our Policy */}
           <div>
-            <h3 className="text-white text-xl font-serif mb-6 uppercase tracking-wide">Our Policy</h3>
+            <h3 className="text-[#3E2723] text-xl font-serif mb-6 uppercase tracking-wide">Our Policy</h3>
             <ul className="space-y-3">
               <FooterLink text="Terms & Condition" />
               <FooterLink text="Privacy Policy" />
@@ -69,24 +69,24 @@ const Footer = () => {
 
           {/* Column 4: Contact Info */}
           <div>
-            <h3 className="text-white text-xl font-serif mb-6 uppercase tracking-wide">Contact Info</h3>
+            <h3 className="text-[#3E2723] text-xl font-serif mb-6 uppercase tracking-wide">Contact Info</h3>
             <ul className="space-y-4 text-sm">
               <li className="flex gap-3 items-start">
-                <MapPin className="text-white shrink-0 mt-1" size={18} fill="white" />
+                <MapPin className="text-white shrink-0 mt-1" size={18} fill="brown" />
                 <span>
                   45 Ground Floor 7th, Avenue High Street, Sector 4 Greater Noida West, Haibatpur, Dadri Tehsil -2, Gautam Buddha Nagar, Uttar Pradesh - 201318
                 </span>
               </li>
               <li className="flex gap-3 items-center">
-                <Phone className="text-white shrink-0" size={18} fill="white" />
+                <Phone className="text-white shrink-0" size={18} fill="brown" />
                 <span>+91-9643803833, +91-9643803813</span>
               </li>
               <li className="flex gap-3 items-center">
-                <Mail className="text-white shrink-0" size={18} fill="white" />
+                <Mail className="text-white shrink-0" size={18} fill="brown" />
                 <span>shaistas@shaistas.in</span>
               </li>
               <li className="flex gap-3 items-center">
-                <Globe className="text-white shrink-0" size={18} />
+                <Globe className="text-[#3E2723]shrink-0" size={18} />
                 <span>www.shaistas.in</span>
               </li>
             </ul>
@@ -95,9 +95,9 @@ const Footer = () => {
       </div>
 
       {/* Copyright Bar */}
-      <div className="bg-black py-4 border-t border-gray-800">
-        <div className="container mx-auto px-4 text-center text-sm text-white">
-          <p>© Copyright 2023 Shaista's | All Rights Reserved</p>
+      <div className="bg-[#3E2723] py-4 border-t border-[#5D4037]">
+        <div className="container mx-auto px-4 text-center text-sm text-[#F5F0E6]">
+          <p>  Copyright 2023 Shaista's | All Rights Reserved</p>
         </div>
       </div>
     </footer>
